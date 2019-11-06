@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'vulcan-course-project';
+  title: string;
+
+  constructor() {
+    this.title = 'Hello Vulcan';
+  }
+
+  changeTitle(){
+    this.title = 'Hello Yahav';
+  }
 }
+
