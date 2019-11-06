@@ -1,5 +1,11 @@
-{{title}}
+<div class="shopping-cart" *ngFor="let item of shoppingCart">
+  <app-item [item]="item"></app-item>
+</div>
 
-<button (click)="changeTitle()">
-  Click ME
-</button>
+
+<div class="list" *ngFor="let item of items">
+  <app-item [item]="item" (addToCart)="addToCart($event)" (removeFromCart)="removeFromCart($event)">
+
+  </app-item>
+
+</div>
