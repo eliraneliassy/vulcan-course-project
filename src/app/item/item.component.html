@@ -1,6 +1,6 @@
 <div class="item">
     <div class="title">
-        {{item.title}}
+        {{item.description}}
     </div>
 
     <div class="price">
@@ -8,9 +8,9 @@
     </div>
 
     <div class="img">
-        <img [src]="item.imgUrl">
+        <img [src]="item.imageUrl">
     </div>
 </div>
 
-<button (click)="addToCartClicked(item)">Add To Cart</button>
-<button (click)="removeFromCartClicked(item)">Remove From Cart</button>
+<button (click)="addToCartClicked(item)" *ngIf="!existInCart">Add To Cart</button>
+<button (click)="removeFromCartClicked(item)" *ngIf="existInCart">Remove From Cart</button>

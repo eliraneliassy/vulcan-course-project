@@ -9,6 +9,7 @@ import { Item } from '../item.interface';
 export class ItemComponent implements OnInit {
 
   @Input() item: Item;
+  @Input() existInCart: boolean;
 
   @Output() addToCart: EventEmitter<Item> = new EventEmitter<Item>();
   @Output() removeFromCart: EventEmitter<Item> = new EventEmitter<Item>();
