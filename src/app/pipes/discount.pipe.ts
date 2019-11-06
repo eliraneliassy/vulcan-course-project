@@ -7,7 +7,7 @@ export class DiscountPipe implements PipeTransform {
 
   transform(value: any, ...args: any[]): any {
     if (value > 10) {
-      return value * (args[0] / 1000);
+      return value * (args[0] / 100);
     }
     return value;
   }
