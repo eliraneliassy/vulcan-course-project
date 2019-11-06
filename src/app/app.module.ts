@@ -5,12 +5,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ItemComponent } from './item/item.component';
 import { DiscountPipe } from './pipes/discount.pipe';
+import { ChangeColorDirective } from './directives/change-color.directive';
+import { NotIfDirective } from './directives/not-if.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     ItemComponent,
-    DiscountPipe
+    DiscountPipe,
+    ChangeColorDirective,
+    NotIfDirective
   ],
   imports: [
     BrowserModule,

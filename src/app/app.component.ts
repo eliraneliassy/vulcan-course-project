@@ -1,7 +1,7 @@
 import { db } from './db';
 import { CartService } from './services/cart.service';
 import { Item } from './item.interface';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnChanges, AfterViewInit, AfterContentChecked, AfterViewChecked, AfterContentInit, DoCheck, OnDestroy, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
+
   shoppingCart: Item[] = [];
 
   items: Item[] = db;
 
   constructor(private cartService: CartService) {
-    this.shoppingCart = cartService.shoppingCart;
+    this.shoppingCart = this.cartService.shoppingCart;
   }
+
+
 
   addToCart(item) {
     this.shoppingCart.push(item);
