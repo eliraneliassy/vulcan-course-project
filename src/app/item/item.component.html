@@ -4,7 +4,7 @@
     </div>
 
     <div class="price">
-        {{item.price}}
+        {{item.price / 100 | discount:10 |currency}}
     </div>
 
     <div class="img" >
