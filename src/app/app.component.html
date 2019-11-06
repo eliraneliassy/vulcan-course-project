@@ -1,13 +1,18 @@
-<div class="shopping-cart" *ngFor="let item of shoppingCart">
-  <app-item [item]="item" [existInCart]="existInCart(item)"
-  (removeFromCart)="removeFromCart($event)"></app-item>
-</div>
+<div class="container">
+
+  <div class="row shopping-cart">
+    <app-item *ngFor="let item of shoppingCart" [item]="item" [existInCart]="existInCart(item)" 
+    (removeFromCart)="removeFromCart($event)" class="col-3">
+    </app-item>
+  </div>
 
 
-<div class="list" *ngFor="let item of items">
-  <app-item [item]="item" (addToCart)="addToCart($event)" (removeFromCart)="removeFromCart($event)"
-  [existInCart]="existInCart(item)">
 
-  </app-item>
 
+  <div class="list row">
+    <app-item *ngFor="let item of items" [item]="item" (addToCart)="addToCart($event)"
+      (removeFromCart)="removeFromCart($event)" [existInCart]="existInCart(item)" class="col-3">
+    </app-item>
+
+  </div>
 </div>
