@@ -16,12 +16,12 @@ export class CartService {
   }
 
   removeFromCart(item: Item) {
-    const index = this.shoppingCart.findIndex(x => x.title === item.title);
+    const index = this.shoppingCart.findIndex(x => x._id === item._id);
     this.shoppingCart.splice(index, 1);
 
   }
 
   existInCart(item: Item): boolean {
-    return this.shoppingCart.findIndex(x => x.title === item.title) > -1 ? true : false;
+    return this.shoppingCart.findIndex(x => x._id === item._id) > -1 ? true : false;
   }
 }
