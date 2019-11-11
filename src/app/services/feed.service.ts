@@ -8,13 +8,16 @@ import { Item } from '../item.interface';
 })
 export class FeedService {
 
-  BASE_URL = 'https://api.fashbash.co/api/feed'
+  BASE_URL = 'https://api.fashbash.co/api/feed';
 
   constructor(private httpClient: HttpClient) { }
 
-  getFeed(page: number): Observable<Item[]> {
+  getFeed(page: number, category?: string): Observable<Item[]> {
     let params: HttpParams = new HttpParams();
     params = params.append('page', page.toString());
+    params = category ? params.append('categories', category) : params;
+
     return this.httpClient.get<Item[]>(`${this.BASE_URL}`, { params });
   }
+
 }

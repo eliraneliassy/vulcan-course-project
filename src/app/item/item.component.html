@@ -1,4 +1,4 @@
-<div class="item">
+<div class="item" *ngIf="item">
     <div class="title">
         {{item.description}}
     </div>
@@ -8,9 +8,9 @@
     </div>
 
     <div class="img" >
-        <img [src]="item.imageUrl">
+        <img [src]="item.imageUrl" class="image">
     </div>
 </div>
 
-<button (click)="addToCartClicked(item)" *ngIf="!existInCart">Add To Cart</button>
+<button (click)="addToCartClicked(item)" *ngIf="!existInCart" class="add-to-cart">Add To Cart</button>
 <button (click)="removeFromCartClicked(item)" *ngIf="existInCart">Remove From Cart</button>

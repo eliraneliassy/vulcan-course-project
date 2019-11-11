@@ -17,9 +17,6 @@ export class ItemComponent {
   constructor() {
 
   }
-
-
-
   addToCartClicked(item) {
     this.addToCart.emit(item);
   }
