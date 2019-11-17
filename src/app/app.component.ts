@@ -20,7 +20,10 @@ export class AppComponent implements OnInit {
 
   items: Item[] = [];
 
-  items$: Observable<Item[]>;
+  fashionItem$: Observable<Item[]>;
+  sportsItem$: Observable<Item[]>;
+
+  // items$: Observable<Item[]>;
 
   filters = '';
 
@@ -31,16 +34,16 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.feedService.getFeed(0).subscribe((items: Item[]) => {
-      this.items = items;
-    });
-
-    this.items$ = this.feedService.getFeed(0);
+    // this.feedService.getFeed(0).subscribe((items: Item[]) => {
+    //   this.items = items;
+    // });
+    this.fashionItem$ = this.feedService.getFeed(0, 'fashion');
+    this.sportsItem$ = this.feedService.getFeed(0, 'sports_outdoors');
   }
 
   filter(category: string) {
     // fashion,books_electoronics,sports_outdoors,beauty_lifestle,home_kitchen_toys
-    
+
     const index = this.filters.indexOf(category);
     if (index > -1) {
       this.filters = this.filters.replace(`${category},`, '');
@@ -48,7 +51,7 @@ export class AppComponent implements OnInit {
       this.filters += `${category},`;
     }
 
-    this.feedService.getFeed(0, this.filters.slice(0, -1)).subscribe(res => this.items = res);
+    // this.feedService.getFeed(0, this.filters.slice(0, -1)).subscribe(res => this.items = res);
   }
 
   addToCart(item) {

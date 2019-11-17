@@ -12,11 +12,30 @@
   <button (click)="filter('fashion')">
     Fashion
   </button>
-  <div class="list row">
 
-    <app-item *ngFor="let item of items" [item]="item" (addToCart)="addToCart($event)"
-      (removeFromCart)="removeFromCart($event)" [existInCart]="existInCart(item)" class="col-3">
-    </app-item>
 
-  </div>
+  <mat-tab-group class="tab-group">
+    <mat-tab label="One" class="mat-tab">
+
+      <div class="list row">
+        <app-item *ngFor="let item of (fashionItem$ | async)" [item]="item" (addToCart)="addToCart($event)"
+          (removeFromCart)="removeFromCart($event)" [existInCart]="existInCart(item)" 
+          class="col-3 item">
+        </app-item>
+      </div>
+
+    </mat-tab>
+    <mat-tab label="Two" class="tab-group">
+      <div class="list row">
+        <app-item *ngFor="let item of (sportsItem$ | async)" [item]="item" (addToCart)="addToCart($event)"
+          (removeFromCart)="removeFromCart($event)" [existInCart]="existInCart(item)" 
+          class="col-3 item">
+        </app-item>
+      </div>
+
+    </mat-tab>
+  </mat-tab-group>
+
+
+
 </div>
