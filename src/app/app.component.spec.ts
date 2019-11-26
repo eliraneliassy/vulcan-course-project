@@ -1,3 +1,4 @@
+import { Item } from './item.interface';
 import { sportDB } from './sportDbMock';
 import { FeedService } from './services/feed.service';
 
@@ -14,12 +15,13 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
 
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
   let el: DebugElement;
   let feedService: any;
+  let itemDB: Item;
 
   beforeEach(async(() => {
 
@@ -51,6 +53,8 @@ fdescribe('AppComponent', () => {
 
       feedService = TestBed.get(FeedService);
     });
+
+    itemDB = fashionDB[0];
 
 
   }));
@@ -106,12 +110,20 @@ fdescribe('AppComponent', () => {
       const image = item.query(By.css('.image'));
       expect(image.nativeElement.src).toBe(sportDB[0].imageUrl);
 
-
-
-
     });
   }));
 
+  it('should add and remove to/from cart', () => {
+    expect(component.shoppingCart.length).toBe(0);
+    component.addToCart(itemDB);
+    expect(component.shoppingCart.length).toBe(1);
+    expect(component.shoppingCart[0]).toBe(itemDB);
 
+    expect(component.existInCart(itemDB)).toBeTruthy();
+
+    component.removeFromCart(itemDB);
+    expect(component.shoppingCart.length).toEqual(0);
+    expect(component.existInCart(itemDB)).toBeFalsy();
+  });
 
 });

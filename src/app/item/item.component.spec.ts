@@ -48,7 +48,7 @@ describe('ItemComponent', () => {
 
   });
 
-  it('should emit add to cart event - with spys', async(() => {
+  it('should emit add to cart event - with spys', () => {
     const item = db[0];
     component.item = item;
 
@@ -59,9 +59,9 @@ describe('ItemComponent', () => {
 
     expect(addToCartSpy).toHaveBeenCalledTimes(1);
 
-  }));
+  });
 
-  it('should emit add to cart event - with subscribe', async(() => {
+  it('should emit add to cart event - with subscribe', () => {
     const item = db[0];
     component.item = item;
 
@@ -73,5 +73,5 @@ describe('ItemComponent', () => {
 
     component.addToCartClicked(item);
 
-  }));
+  });
 });

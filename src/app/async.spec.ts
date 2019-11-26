@@ -106,9 +106,8 @@ describe('Async Testing', () => {
         obs$.subscribe(() => {
             test = true;
             console.log('inside obs');
-            done();
-
             expect(test).toBeTruthy();
+            done();
         });
 
         console.log('After obs');

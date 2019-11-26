@@ -5,7 +5,7 @@ import { Directive, ElementRef, OnInit, AfterViewInit, Renderer2, Input } from '
 })
 export class ChangeColorDirective implements AfterViewInit {
 
-  @Input() color: string;
+  @Input() color = 'yellow';
 
   constructor(private element: ElementRef, private rendrer: Renderer2) {
 
