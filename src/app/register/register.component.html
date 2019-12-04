@@ -1,0 +1,24 @@
+<form class="form-signin" [formGroup]="form">
+    <h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+
+    <input type="email" class="form-control" placeholder="Email address" formControlName="email">
+    <small class="error" *ngIf="form.get('email').hasError('required') &&
+    form.get('email').touched">
+        Email is required
+    </small>
+    <small class="error" *ngIf="form.get('email').hasError('email') &&
+    form.get('email').touched">
+        Email is invalid
+    </small>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+
+    <input type="password" class="form-control" placeholder="Password" formControlName="password">
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="submit()" [disabled]="!form.valid">
+        Register</button>
+
+</form>

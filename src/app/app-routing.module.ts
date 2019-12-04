@@ -1,3 +1,4 @@
+import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { ItemPreviewResolver } from './services/item-preview.resolve';
 import { ItemPreviewComponent } from './item-preview/item-preview.component';
@@ -9,7 +10,13 @@ import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  {
+    path: 'auth', children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
+    ]
+  },
+
   { path: 'feed', component: FeedComponent },
   { path: 'cart', component: CartComponent },
   { path: 'item/:id', component: ItemPreviewComponent, resolve: { item: ItemPreviewResolver } }
