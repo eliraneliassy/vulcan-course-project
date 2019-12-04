@@ -1,7 +1,7 @@
 import { Item } from './../item.interface';
 import { FeedService } from './../services/feed.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Data } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { forkJoin, combineLatest } from 'rxjs';
 
@@ -15,10 +15,13 @@ export class ItemPreviewComponent implements OnInit {
   item: Item;
 
   constructor(
-    private feedService: FeedService,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.route.data.subscribe((data: Data) => {
+      this.item = data.item;
+    });
 
 
     // this.route.params.subscribe((params: Params) => {
@@ -27,10 +30,7 @@ export class ItemPreviewComponent implements OnInit {
     //   });
     // });
 
-    combineLatest([this.route.params, this.feedService.getFeed(0)])
-      .subscribe((res: any) => {
-        this.item = res[1].find(x => x._id === res[0].id);
-      });
+
 
 
   }

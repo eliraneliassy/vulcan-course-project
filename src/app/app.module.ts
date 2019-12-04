@@ -12,6 +12,8 @@ import { FeedComponent } from './feed/feed.component';
 import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './header/header.component';
 import { ItemPreviewComponent } from './item-preview/item-preview.component';
+import { LoginComponent } from './login/login.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,12 +25,14 @@ import { ItemPreviewComponent } from './item-preview/item-preview.component';
     FeedComponent,
     CartComponent,
     HeaderComponent,
-    ItemPreviewComponent
+    ItemPreviewComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

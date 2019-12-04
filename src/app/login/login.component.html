@@ -1,0 +1,26 @@
+<form class="form-signin" #form="ngForm" (ngSubmit)="submit(form)">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+    <label for="inputEmail" class="sr-only">Email address</label>
+
+    <input type="email" class="form-control" placeholder="Email address" name="email" ngModel email required
+        #email="ngModel">
+
+    <small class="error" *ngIf="!email.valid && email.touched && email.hasError('required')">
+        Email is required
+    </small>
+
+    <small class="error" *ngIf="!email.valid && email.touched && email.hasError('email')">
+        Email is invalid
+    </small>
+
+    <label for="inputPassword" class="sr-only">Password</label>
+
+    <input type="password" class="form-control" placeholder="Password" name="password" ngModel required
+        pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$">
+
+
+    <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!form.valid">
+        Sign in</button>
+
+</form>
