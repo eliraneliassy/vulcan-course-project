@@ -1,3 +1,4 @@
+import { CartService } from './services/cart.service';
 import { Item } from './item.interface';
 import { sportDB } from './sportDbMock';
 import { FeedService } from './services/feed.service';
@@ -20,20 +21,25 @@ describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
   let component: AppComponent;
   let el: DebugElement;
-  let feedService: any;
-  let itemDB: Item;
+  let feedService: FeedService;
+  let cartService: CartService;
 
   beforeEach(async(() => {
 
-    const feedServiceStub = {
+    const feedServiceSpy = {
       getFeed: (page, category) => {
         return category === 'fashion' ? of(fashionDB) : of(sportDB);
       }
     };
 
+    const cartServiceSpy = {
+      addToCart: () => { },
+      removeFromCart: () => { },
+      existInCart: () => { }
+    };
+
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         HttpClientTestingModule,
         MatTabsModule,
         NoopAnimationsModule
@@ -44,18 +50,20 @@ describe('AppComponent', () => {
         DiscountPipe
       ],
       providers: [
-        { provide: FeedService, useValue: feedServiceStub }
+        { provide: FeedService, useValue: feedServiceSpy },
+        { provide: CartService, useValue: cartServiceSpy },
       ]
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(AppComponent);
       component = fixture.debugElement.componentInstance;
       el = fixture.debugElement;
-
       feedService = TestBed.get(FeedService);
+      cartService = TestBed.get(CartService);
+
+
+      fixture.detectChanges();
+
     });
-
-    itemDB = fashionDB[0];
-
 
   }));
 
@@ -65,65 +73,58 @@ describe('AppComponent', () => {
 
   it('should render all items', () => {
 
-    feedService.getFeed(0, fashionDB).subscribe(res => {
-      fixture.detectChanges();
-      const items = el.queryAll(By.css('.item'));
 
-      expect(items.length).toBe(24);
+    const items: DebugElement[] = el.queryAll(By.css('.item'));
 
-      const item = el.query(By.css('.item:first-child'));
+    expect(items.length).toEqual(24);
 
-      expect(item).toBeTruthy();
+    const firstItem = el.query(By.css('.item:first-child'));
 
-      const title = item.query(By.css('.title'));
-      expect(title.nativeElement.textContent.trim())
-        .toBe(fashionDB[0].description);
+    const firstItemTitle = firstItem.query(By.css('.title'));
 
-      const image = item.query(By.css('.image'));
-      expect(image.nativeElement.src).toBe(fashionDB[0].imageUrl);
-    });
+    expect(firstItemTitle.nativeElement.innerText)
+      .toEqual(fashionDB[0].description);
 
+    const tabs = el.queryAll(By.css('.mat-tab-label'));
+
+    expect(tabs.length).toEqual(2);
 
   });
 
-  it('should show sports items when clicking on sports tab clicked', fakeAsync(() => {
-    feedService.getFeed().subscribe(res => {
+  it('should show sports items when clicking on sports tab', fakeAsync(() => {
+    const tabs = el.queryAll(By.css('.mat-tab-label'));
 
-      fixture.detectChanges();
+    tabs[1].nativeElement.click();
 
-      const tabs = el.queryAll(By.css('.mat-tab-label'));
+    fixture.detectChanges();
 
-      tabs[1].nativeElement.click();
+    flush();
 
-      fixture.detectChanges();
+    const firstItem = el.query(By.css('.item:first-child'));
 
-      flush();
+    const firstItemTitle = firstItem.query(By.css('.title'));
 
-      const item = el.query(By.css('.item:first-child'));
+    expect(firstItemTitle.nativeElement.innerText)
+      .toEqual(sportDB[0].description);
 
-      expect(item).toBeTruthy();
 
-      const title = item.query(By.css('.title'));
-      expect(title.nativeElement.textContent.trim())
-        .toBe(sportDB[0].description);
-
-      const image = item.query(By.css('.image'));
-      expect(image.nativeElement.src).toBe(sportDB[0].imageUrl);
-
-    });
   }));
 
   it('should add and remove to/from cart', () => {
-    expect(component.shoppingCart.length).toBe(0);
-    component.addToCart(itemDB);
-    expect(component.shoppingCart.length).toBe(1);
-    expect(component.shoppingCart[0]).toBe(itemDB);
 
-    expect(component.existInCart(itemDB)).toBeTruthy();
+    spyOn(cartService, 'addToCart');
+    spyOn(cartService, 'removeFromCart');
 
-    component.removeFromCart(itemDB);
-    expect(component.shoppingCart.length).toEqual(0);
-    expect(component.existInCart(itemDB)).toBeFalsy();
+    const item = fashionDB[0];
+    component.addToCart(item);
+
+    expect(cartService.addToCart).toHaveBeenCalledTimes(1);
+
+    component.removeFromCart(item);
+    expect(cartService.removeFromCart).toHaveBeenCalledTimes(1);
+
+
+
   });
 
 });

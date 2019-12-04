@@ -1,5 +1,4 @@
 import { fakeAsync, tick, flush, async, flushMicrotasks } from '@angular/core/testing';
-import { promise } from 'protractor';
 import { of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -21,13 +20,10 @@ describe('Async Testing', () => {
 
         setTimeout(() => {
             test = true;
-
-            expect(test).toBeTruthy();
-
-
         }, 1000);
 
         tick(500);
+        expect(test).toBeFalsy();
         tick(500);
 
         expect(test).toBeTruthy();
@@ -125,8 +121,6 @@ describe('Async Testing', () => {
 
             expect(test).toBeTruthy();
         });
-
-
 
 
     }));

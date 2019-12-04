@@ -1,13 +1,13 @@
 <div class="container">
 
-  <div class="row shopping-cart">
+  <!-- <div class="row shopping-cart">
     <app-item *ngFor="let item of shoppingCart" [item]="item" [existInCart]="existInCart(item)"
       (removeFromCart)="removeFromCart($event)" class="col-3" appChangeColor [color]="'red'">
     </app-item>
-  </div>
+  </div> -->
 
   <mat-tab-group class="tab-group">
-    <mat-tab label="One" class="mat-tab">
+    <mat-tab label="Fashion" class="mat-tab">
 
       <div class="list row">
         <app-item *ngFor="let item of (fashionItem$ | async)" [item]="item" (addToCart)="addToCart($event)"
@@ -17,7 +17,7 @@
       </div>
 
     </mat-tab>
-    <mat-tab label="Two" class="tab-group">
+    <mat-tab label="Sports" class="tab-group">
       <div class="list row">
         <app-item *ngFor="let item of (sportsItem$ | async)" [item]="item" (addToCart)="addToCart($event)"
           (removeFromCart)="removeFromCart($event)" [existInCart]="existInCart(item)" 
