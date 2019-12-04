@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   constructor(
     private cartService: CartService,
     private feedService: FeedService) {
-    this.shoppingCart = this.cartService.shoppingCart;
+
   }
 
   ngOnInit(): void {
@@ -29,21 +29,23 @@ export class AppComponent implements OnInit {
       this.items = items;
     });
 
+    this.cartService.getCart().subscribe((shoppingCart: Item[]) => {
+      this.shoppingCart = shoppingCart;
+    });
+
     this.items$ = this.feedService.getFeed(0);
   }
 
   addToCart(item) {
-    this.shoppingCart.push(item);
+    this.cartService.addToCart(item);
   }
 
   removeFromCart(item: Item) {
-    const index = this.shoppingCart.findIndex(x => x._id === item._id);
-    this.shoppingCart.splice(index, 1);
-
+    this.cartService.removeFromCart(item);
   }
 
   existInCart(item: Item): boolean {
-    return this.shoppingCart.findIndex(x => x._id === item._id) > -1 ? true : false;
+    return this.cartService.existInCart(item);
   }
 }
 

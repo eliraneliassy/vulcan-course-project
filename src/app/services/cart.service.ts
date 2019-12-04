@@ -1,27 +1,40 @@
 import { Injectable } from '@angular/core';
 import { Item } from '../item.interface';
+import { Observable, Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  shoppingCart: Item[] = [];
+  private shoppingCart: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
 
-  constructor() { }
+  constructor() {
+    this.shoppingCart.subscribe(console.log);
+  }
+
+  getCart() {
+    return this.shoppingCart.asObservable();
+  }
 
 
   addToCart(item) {
-    this.shoppingCart.push(item);
+    // this.shoppingCart.push(item);
+    const cart = this.shoppingCart.getValue();
+    cart.push(item);
+    this.shoppingCart.next(cart);
   }
 
   removeFromCart(item: Item) {
-    const index = this.shoppingCart.findIndex(x => x._id === item._id);
-    this.shoppingCart.splice(index, 1);
+    const cart = this.shoppingCart.getValue();
+    const index = cart.findIndex(x => x._id === item._id);
+    cart.splice(index, 1);
+    this.shoppingCart.next(cart);
 
   }
 
   existInCart(item: Item): boolean {
-    return this.shoppingCart.findIndex(x => x._id === item._id) > -1 ? true : false;
+    const cart = this.shoppingCart.getValue();
+    return cart.findIndex(x => x._id === item._id) > -1 ? true : false;
   }
 }
