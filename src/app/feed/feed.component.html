@@ -1,0 +1,6 @@
+<div class="list row">
+    <app-item *ngFor="let item of items" [item]="item" (addToCart)="addToCart($event)"
+        (removeFromCart)="removeFromCart($event)" [existInCart]="existInCart(item)" class="col-3">
+    </app-item>
+
+</div>

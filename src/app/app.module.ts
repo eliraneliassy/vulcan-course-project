@@ -8,6 +8,10 @@ import { ItemComponent } from './item/item.component';
 import { DiscountPipe } from './pipes/discount.pipe';
 import { ChangeColorDirective } from './directives/change-color.directive';
 import { NotIfDirective } from './directives/not-if.directive';
+import { FeedComponent } from './feed/feed.component';
+import { CartComponent } from './cart/cart.component';
+import { HeaderComponent } from './header/header.component';
+import { ItemPreviewComponent } from './item-preview/item-preview.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import { NotIfDirective } from './directives/not-if.directive';
     ItemComponent,
     DiscountPipe,
     ChangeColorDirective,
-    NotIfDirective
+    NotIfDirective,
+    FeedComponent,
+    CartComponent,
+    HeaderComponent,
+    ItemPreviewComponent
   ],
   imports: [
     BrowserModule,

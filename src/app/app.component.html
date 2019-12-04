@@ -1,18 +1,7 @@
+<app-header></app-header>
 <div class="container" >
 
-  <div class="row shopping-cart">
-    <app-item *ngFor="let item of shoppingCart" [item]="item" [existInCart]="existInCart(item)" 
-    (removeFromCart)="removeFromCart($event)" class="col-3" appChangeColor [color]="'red'" >
-    </app-item>
-  </div>
-
-
-
-
-  <div class="list row">
-    <app-item *ngFor="let item of items" [item]="item" (addToCart)="addToCart($event)"
-      (removeFromCart)="removeFromCart($event)" [existInCart]="existInCart(item)" class="col-3">
-    </app-item>
-
-  </div>
+  <router-outlet></router-outlet>
+  
 </div>
+

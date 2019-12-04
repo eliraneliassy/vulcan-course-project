@@ -1,0 +1,6 @@
+<h2>This is our shopping cart:</h2>
+<div class="row shopping-cart">
+    <app-item *ngFor="let item of shoppingCart" [item]="item" [existInCart]="existInCart(item)"
+        (removeFromCart)="removeFromCart($event)" class="col-3" appChangeColor [color]="'red'">
+    </app-item>
+</div>
