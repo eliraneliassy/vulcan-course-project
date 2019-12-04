@@ -1,8 +1,13 @@
 <div class="container d-flex">
+
     <a routerLink="/feed">
         <div class="list-item">Feed</div>
     </a>
     <a (click)="goToCart()">
         <div class="list-item">Cart</div>
     </a>
+    
+    <div *ngIf="user">
+        Hello, {{user}}
+    </div>
 </div>
