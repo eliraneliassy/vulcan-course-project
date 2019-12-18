@@ -9,9 +9,10 @@ import { CartComponent } from './cart/cart.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
   {
     path: 'auth', children: [
+      {path: '', redirectTo: 'login', pathMatch: 'full'},
       { path: 'login', component: LoginComponent },
       { path: 'register', component: RegisterComponent }
     ]
@@ -19,7 +20,10 @@ const routes: Routes = [
 
   { path: 'feed', component: FeedComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'item/:id', component: ItemPreviewComponent, resolve: { item: ItemPreviewResolver } }
+  {
+    path: 'item/:id', component: ItemPreviewComponent,
+    resolve: { item: ItemPreviewResolver }
+  }
 ];
 
 @NgModule({

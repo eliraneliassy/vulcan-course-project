@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Auth } from '../auth.interface';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ export class AuthService {
   private user: BehaviorSubject<string> = new BehaviorSubject<string>(null);
   constructor(private router: Router) { }
 
-  getAuth() {
+  getAuth(): Observable<string> {
     return this.user.asObservable();
   }
 
