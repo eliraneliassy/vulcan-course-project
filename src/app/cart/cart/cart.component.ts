@@ -1,6 +1,8 @@
-import { Item } from './../item.interface';
+import { Item } from './../../shared/item.interface';
+import { CartService } from './../../services/cart.service';
+
 import { Component, OnInit } from '@angular/core';
-import { CartService } from '../services/cart.service';
+
 
 @Component({
   selector: 'app-cart',
@@ -21,6 +23,10 @@ export class CartComponent implements OnInit {
 
   existInCart(item: Item): boolean {
     return this.cartService.existInCart(item);
+  }
+
+  removeFromCart(item: Item) {
+    return this.cartService.removeFromCart(item);
   }
 
 }

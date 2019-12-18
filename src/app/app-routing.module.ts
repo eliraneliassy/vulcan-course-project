@@ -1,10 +1,7 @@
 
-import { ItemPreviewResolver } from './services/item-preview.resolve';
-import { ItemPreviewComponent } from './item-preview/item-preview.component';
-import { FeedComponent } from './feed/feed.component';
+
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CartComponent } from './cart/cart.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 
 const routes: Routes = [
@@ -13,17 +10,20 @@ const routes: Routes = [
     path: 'auth', loadChildren: () => import('./auth/auth.module')
       .then(m => m.AuthModule)
   },
-
-  { path: 'feed', component: FeedComponent },
-  { path: 'cart', component: CartComponent },
   {
-    path: 'item/:id', component: ItemPreviewComponent,
-    resolve: { item: ItemPreviewResolver }
+    path: 'cart',
+    loadChildren: () => import('./cart/cart.module').then(m => m.CartModule)
+  },
+  {
+    path: 'feed',
+    loadChildren: () => import('./feed/feed.module').then(m => m.FeedModule)
   }
+
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,
+    { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

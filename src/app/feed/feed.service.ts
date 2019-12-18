@@ -2,7 +2,8 @@ import { db } from './../db';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Item } from '../item.interface';
+import { Item } from '../shared/item.interface';
+
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { Item } from '../item.interface';
 
+
 @Component({
   selector: 'app-item',
   templateUrl: './item.component.html',

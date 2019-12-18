@@ -1,9 +1,11 @@
 import { switchMap } from 'rxjs/operators';
-import { FeedService } from './feed.service';
-import { Item } from './../item.interface';
+
+
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable, combineLatest, of } from 'rxjs';
+import { FeedService } from './feed.service';
+import { Item } from '../shared/item.interface';
 
 @Injectable({ providedIn: 'root' })
 export class ItemPreviewResolver implements Resolve<Item> {

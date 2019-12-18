@@ -1,7 +1,9 @@
+import { Item } from './../../shared/item.interface';
 import { Component, OnInit } from '@angular/core';
-import { Item } from '../item.interface';
-import { CartService } from '../services/cart.service';
-import { FeedService } from '../services/feed.service';
+
+import { CartService } from '../../services/cart.service';
+import { FeedService } from '../feed.service';
+
 
 @Component({
   selector: 'app-feed',

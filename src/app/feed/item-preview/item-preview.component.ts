@@ -1,9 +1,9 @@
-import { Item } from './../item.interface';
-import { FeedService } from './../services/feed.service';
+import { Item } from './../../shared/item.interface';
+
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Data } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
-import { forkJoin, combineLatest } from 'rxjs';
+
 
 @Component({
   selector: 'app-item-preview',

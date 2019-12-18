@@ -1,8 +1,11 @@
-import { FeedService } from './services/feed.service';
+
 import { db } from './db';
 import { CartService } from './services/cart.service';
-import { Item } from './item.interface';
-import { Component, OnInit, OnChanges, AfterViewInit, AfterContentChecked, AfterViewChecked, AfterContentInit, DoCheck, OnDestroy, SimpleChanges, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component, OnInit, OnChanges, AfterViewInit,
+  AfterContentChecked, AfterViewChecked, AfterContentInit,
+  DoCheck, OnDestroy, SimpleChanges, ChangeDetectionStrategy
+} from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Component({
