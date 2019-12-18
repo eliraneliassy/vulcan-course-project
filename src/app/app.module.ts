@@ -12,9 +12,7 @@ import { FeedComponent } from './feed/feed.component';
 import { CartComponent } from './cart/cart.component';
 import { HeaderComponent } from './header/header.component';
 import { ItemPreviewComponent } from './item-preview/item-preview.component';
-import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +24,7 @@ import { RegisterComponent } from './register/register.component';
     FeedComponent,
     CartComponent,
     HeaderComponent,
-    ItemPreviewComponent,
-    LoginComponent,
-    RegisterComponent
+    ItemPreviewComponent
   ],
   imports: [
     BrowserModule,

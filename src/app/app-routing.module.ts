@@ -1,5 +1,4 @@
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
+
 import { ItemPreviewResolver } from './services/item-preview.resolve';
 import { ItemPreviewComponent } from './item-preview/item-preview.component';
 import { FeedComponent } from './feed/feed.component';
@@ -11,11 +10,8 @@ import { CartComponent } from './cart/cart.component';
 const routes: Routes = [
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
   {
-    path: 'auth', children: [
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
-      { path: 'login', component: LoginComponent },
-      { path: 'register', component: RegisterComponent }
-    ]
+    path: 'auth', loadChildren: () => import('./auth/auth.module')
+      .then(m => m.AuthModule)
   },
 
   { path: 'feed', component: FeedComponent },
