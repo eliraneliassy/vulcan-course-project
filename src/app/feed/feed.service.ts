@@ -10,14 +10,14 @@ import { Item } from '../shared/item.interface';
 })
 export class FeedService {
 
-  BASE_URL = 'https://api.fashbash.co/api/feed';
+  BASE_URL = 'http://localhost:4700/feed';
 
   constructor(private httpClient: HttpClient) { }
 
   getFeed(page: number): Observable<Item[]> {
     let params: HttpParams = new HttpParams();
     params = params.append('page', page.toString());
-    // return this.httpClient.get<Item[]>(`${this.BASE_URL}`, { params });
-    return of(db);
+    return this.httpClient.get<Item[]>(`${this.BASE_URL}`, { params });
+    // return of(db);
   }
 }
