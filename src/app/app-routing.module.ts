@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 
 
 import { NgModule } from '@angular/core';
@@ -16,7 +17,8 @@ const routes: Routes = [
   },
   {
     path: 'feed',
-    loadChildren: () => import('./feed/feed.module').then(m => m.FeedModule)
+    loadChildren: () => import('./feed/feed.module').then(m => m.FeedModule),
+    canLoad: [AuthGuard]
   }
 
 ];

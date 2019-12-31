@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: '', component: FeedComponent },
   {
     path: 'item/:id', component: ItemPreviewComponent,
-    resolve: { item: ItemPreviewResolver }
+    resolve: { item: ItemPreviewResolver },
   }
 ];
 

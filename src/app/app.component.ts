@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 
 import { db } from './db';
 import { CartService } from './services/cart.service';
@@ -14,6 +15,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(private httpClient: HttpClient){
+    this.httpClient.get('https://jsonplaceholder.typicode.com/posts').subscribe();
+  }
 
 
 }
