@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "vulcan-course-project"
+    }
+  },
+  "defaultProject": "vulcan-course-project",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
